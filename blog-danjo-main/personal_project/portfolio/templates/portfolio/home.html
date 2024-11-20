@@ -1,14 +1,107 @@
-<h1>Home Page</h1>
-{% for project in Projects %}
-    <h2>{{ project.title }}</h2>
-    <br>
-    <p>{{ project.description }}</p>
-    <br>
-    <br>
-    <br>
-    <img src="{{ project.image.url }}" alt="">
-    {% if project.url %}
-    <br>
-        <a href="{{ project.url }}">link</a>
-    {% endif %}
-{% endfor %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .project {
+            background: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .project img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+        .project h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .project p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .project a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        .project a:hover {
+            text-decoration: underline;
+        }
+
+        .blog-button {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            text-align: center;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .blog-button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Home Page</h1>
+    </header>
+    <div class="container">
+        {% for project in Projects %}
+        <div class="project">
+            <h2>{{ project.title }}</h2>
+            <p>{{ project.description }}</p>
+            <img src="{{ project.image.url }}" alt="Project Image">
+            {% if project.url %}
+            <br>
+            <a href="{{ project.url }}">View More</a>
+            {% endif %}
+        </div>
+
+        <a class="blog-button" href="{% url 'all_blogs' %}">View All Blogs</a>
+
+        {% endfor %}
+        
+    </div>
+</body>
+</html>
